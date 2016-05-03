@@ -1,0 +1,31 @@
+// Place all the styles related to the songs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+    margin: 0;
+}
+header{
+    font-size: 24px;
+    text-align: center;
+    background: #F57C00;
+    color: white;
+}
+
+table{
+    width: 100%;
+}
+
+tr:nth-child(odd){
+    background: #FFE0B2;
+}
+
+tr{
+    min-height: 20px;
+}
+
+td{
+    padding: 20px;
+}
+
+

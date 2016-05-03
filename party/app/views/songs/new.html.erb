@@ -1,0 +1,44 @@
+<script>
+    $(function(){
+        $('#song_form').on("ajax:success", function(e, data, status, xhr){
+        var songlist = $("#songlist");
+        var data = JSON.parse(data)
+        
+        songlist.prepend("<tr><td><a target='_blank' href=" + data.url + ">" + 
+        data.title + "</td><td></a>" + 
+        "<audio controls='controls' src=" + data.url + "/></td><td>" + 
+        data.artist + "</td><td>" +
+        data.duration + "</td></tr>"
+        );
+
+        $('#data').val("");
+        });
+    });
+</script>
+<%= form_tag "/songs", remote: true, id: "song_form" do %>
+    <%= text_field_tag "data" %>
+    <%= submit_tag "save" %>
+<% end %>
+
+<table id="songlist">
+    <% @songs.each do |song| %>
+        <% song = JSON.parse(song) %>
+        <tr>
+        <td>
+        <%= link_to song['url'], target: 'blank' do %>
+            <%= song['title'] %>
+        <% end %>
+        <td>
+        <%= audio_tag song['url'], controls: true %>
+        </td>
+        </td>
+        <td><%= song['artist'] %></td>
+        <td><%= song['duration'] %></td>
+        </tr>
+
+    <% end %>
+</table>
+
+
+
+
